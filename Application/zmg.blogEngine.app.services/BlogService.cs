@@ -38,5 +38,25 @@ namespace zmg.blogEngine.services
 
             return postId;
         }
+
+        public async Task<ICollection<Post>> GestPostsPending()
+        {
+            ICollection<Post> posts = await PostRepository.GetPostsPending();
+
+            if (posts.Equals(null))
+                return new List<Post>();
+
+            return posts;
+        }
+
+        public async Task<int> SetRevisionToPost(Guid pId, int status, string editorUsername)
+        {
+            Post post = await PostRepository.GetPostById(pId);
+            post.Status = (StatusPost)status;
+            post.RevisionDate = DateTime.Now;
+            post.ApprovedBy = await UserRepository.GetEditorByUsername(editorUsername);
+
+            return (int)post.Status;
+        }
     }
 }

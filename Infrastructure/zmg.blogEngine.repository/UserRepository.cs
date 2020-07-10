@@ -20,7 +20,7 @@ namespace zmg.blogEngine.repository
             var w =  await Task.Run(() => (from w in Repository.ToList<Writer>()
                                          where w.UserName.Equals(username)
                                         select w).FirstOrDefault());
-            if (w.Equals(null))
+            if (w == null)
             {
                 w = new Writer()
                 {
@@ -33,6 +33,23 @@ namespace zmg.blogEngine.repository
             return w;
         }
 
-
+        public async Task<Editor> GetEditorByUsername(string username)
+        {
+            Repository.BeginTransaction();
+            var w = await Task.Run(() => (from e in Repository.ToList<Editor>()
+                                          where e.UserName.Equals(username)
+                                          select e).FirstOrDefault());
+            if (w == null)
+            {
+                w = new Editor()
+                {
+                    FullName = "new editor",
+                    UserName = username
+                };
+                w.Id = await Repository.Save(w);
+            }
+            Repository.CommitTransaction();
+            return w;
+        }
     }
 }

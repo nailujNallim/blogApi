@@ -9,5 +9,7 @@ namespace zmg.blogEngine.model
     {
         Task<Guid> CreatePost(Post post);
         Task<ICollection<Post>> GetPostsByUsername(string username);
+        Task<ICollection<Post>> GetPostsPending();
+        Task<Post> GetPostById(Guid pId);
     }
 }

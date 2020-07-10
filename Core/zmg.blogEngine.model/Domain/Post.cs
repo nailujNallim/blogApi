@@ -22,5 +22,7 @@ namespace zmg.blogEngine.model.Domain
         {
             Comments = new List<Comment>();
         }
+
+
     }
 }

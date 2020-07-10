@@ -6,6 +6,7 @@ namespace zmg.blogEngine.model
 {
     public interface IUserRepository
     {
-        Task<Writer> GetWriterByUsername(string userName);
+        Task<Writer> GetWriterByUsername(string writerUsername);
+        Task<Editor> GetEditorByUsername(string editorUsername);
     }
 }

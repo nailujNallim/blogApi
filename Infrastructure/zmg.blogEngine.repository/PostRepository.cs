@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using zmg.blogEngine.model;
 using zmg.blogEngine.model.Domain;
 using System;
+using zmg.blogEngine.model.Enumerations;
 
 namespace zmg.blogEngine.repository
 {
@@ -35,10 +36,40 @@ namespace zmg.blogEngine.repository
         public async Task<ICollection<Post>> GetPostsByUsername(string username)
         {
             Repository.BeginTransaction();
-            var postsList = await Task.Run(() => (from p in Repository.ToList<Post>() select p));            
+            var postsList = await Task.Run(() 
+                => (from p in Repository.ToList<Post>() where p.Author.UserName.Equals(username) select p));            
             Repository.CommitTransaction();
 
             return postsList.ToList();
+        }
+
+        public async Task<ICollection<Post>> GetPostsPending()
+        {
+            Repository.BeginTransaction();
+            var postsList = await Task.Run(() 
+                => (from p in Repository.ToList<Post>() select p));
+            Repository.CommitTransaction();
+
+            var postsPending = new List<Post>();
+            foreach(var p in postsList)
+            {
+                if(p.Status.Equals(StatusPost.Pending))
+                {
+                    postsPending.Add(p);
+                }
+            }
+
+            return postsPending.ToList();
+        }
+
+        public async Task<Post> GetPostById(Guid pId)
+        {
+            Repository.BeginTransaction();
+
+            var post= await Repository.GetById(typeof(Post), pId) as Post;
+            
+            Repository.CommitTransaction();
+            return post;
         }
     }
 }

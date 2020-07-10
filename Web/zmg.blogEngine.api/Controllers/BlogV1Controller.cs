@@ -38,5 +38,20 @@ namespace zmg.blogEngine.api.Controllers
             var postList = await BlogService.Posts(username);
             return Ok(postList);
         }
+
+        [HttpGet("pending")]
+        public async Task<IActionResult> GetAllPostsPending()
+        {
+            var postList = await BlogService.GestPostsPending();
+            return Ok(postList);
+        }
+
+        [HttpPut("{postId}")]
+        public async Task<IActionResult> SetRevisionToPost(string postId, [FromBody]UpdatePostDto postDto)
+        {
+            var pId = Guid.Parse(postId);
+            var newStatus = await BlogService.SetRevisionToPost(pId, postDto.newStatus, postDto.Username);
+            return Ok(newStatus);
+        }
     }
 }
