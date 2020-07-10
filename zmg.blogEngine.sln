@@ -1,0 +1,89 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{51C34D1B-E01B-4C29-A13E-BF028C630CA7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zmg.blogEngine.api", "Web\zmg.blogEngine.api\zmg.blogEngine.api.csproj", "{A0632A7F-2295-4B29-A984-973255010519}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{1980A4B5-17E8-43AC-B051-638630AB3F73}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{EDD30543-FEDC-4A2D-97CF-6FB52CDC6A07}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{A365BBE6-DBBD-432D-A235-B57285D9D4DE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zmg.blogEngine.services", "Core\zmg.blogEngine.services\zmg.blogEngine.services.csproj", "{4A457DB9-8366-4A25-B18E-3BE86207EDD7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zmg.blogEngine.model", "Core\zmg.blogEngine.model\zmg.blogEngine.model.csproj", "{35DC2634-22F2-4C18-A13A-8AFF018CA804}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zmg.blogEngine.app.services", "Application\zmg.blogEngine.app.services\zmg.blogEngine.app.services.csproj", "{E425350F-7BC5-467E-BAE1-1945AD4CA859}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zmg.blogEngine.repository", "Infrastructure\zmg.blogEngine.repository\zmg.blogEngine.repository.csproj", "{17A13BD1-74C7-42B5-B7F1-D29E1E5708CE}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "zmg.blogEngine.sql", "Infrastructure\zmg.blogEngine.sql\zmg.blogEngine.sql.sqlproj", "{D17BECEE-5F53-4BEB-96FC-C80EA8836627}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3CC3B799-BA59-4704-8ED4-7CE2F823DF0F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zmg.blogEngine.test.api", "Tests\zmg.blogEngine.test.api\zmg.blogEngine.test.api.csproj", "{26F9EA0A-F89E-4C5F-A4C6-F6D31E6E1FD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zmg.blogEngine.services.test", "Tests\zmg.blogEngine.services.test\zmg.blogEngine.services.test.csproj", "{A188D703-E478-4AFA-B304-749FF268AC12}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0632A7F-2295-4B29-A984-973255010519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0632A7F-2295-4B29-A984-973255010519}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0632A7F-2295-4B29-A984-973255010519}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0632A7F-2295-4B29-A984-973255010519}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A457DB9-8366-4A25-B18E-3BE86207EDD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A457DB9-8366-4A25-B18E-3BE86207EDD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A457DB9-8366-4A25-B18E-3BE86207EDD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A457DB9-8366-4A25-B18E-3BE86207EDD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35DC2634-22F2-4C18-A13A-8AFF018CA804}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35DC2634-22F2-4C18-A13A-8AFF018CA804}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35DC2634-22F2-4C18-A13A-8AFF018CA804}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35DC2634-22F2-4C18-A13A-8AFF018CA804}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E425350F-7BC5-467E-BAE1-1945AD4CA859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E425350F-7BC5-467E-BAE1-1945AD4CA859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E425350F-7BC5-467E-BAE1-1945AD4CA859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E425350F-7BC5-467E-BAE1-1945AD4CA859}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17A13BD1-74C7-42B5-B7F1-D29E1E5708CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17A13BD1-74C7-42B5-B7F1-D29E1E5708CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17A13BD1-74C7-42B5-B7F1-D29E1E5708CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17A13BD1-74C7-42B5-B7F1-D29E1E5708CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D17BECEE-5F53-4BEB-96FC-C80EA8836627}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D17BECEE-5F53-4BEB-96FC-C80EA8836627}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D17BECEE-5F53-4BEB-96FC-C80EA8836627}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D17BECEE-5F53-4BEB-96FC-C80EA8836627}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D17BECEE-5F53-4BEB-96FC-C80EA8836627}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D17BECEE-5F53-4BEB-96FC-C80EA8836627}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{26F9EA0A-F89E-4C5F-A4C6-F6D31E6E1FD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26F9EA0A-F89E-4C5F-A4C6-F6D31E6E1FD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26F9EA0A-F89E-4C5F-A4C6-F6D31E6E1FD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26F9EA0A-F89E-4C5F-A4C6-F6D31E6E1FD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A188D703-E478-4AFA-B304-749FF268AC12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A188D703-E478-4AFA-B304-749FF268AC12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A188D703-E478-4AFA-B304-749FF268AC12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A188D703-E478-4AFA-B304-749FF268AC12}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A0632A7F-2295-4B29-A984-973255010519} = {51C34D1B-E01B-4C29-A13E-BF028C630CA7}
+		{4A457DB9-8366-4A25-B18E-3BE86207EDD7} = {EDD30543-FEDC-4A2D-97CF-6FB52CDC6A07}
+		{35DC2634-22F2-4C18-A13A-8AFF018CA804} = {EDD30543-FEDC-4A2D-97CF-6FB52CDC6A07}
+		{E425350F-7BC5-467E-BAE1-1945AD4CA859} = {1980A4B5-17E8-43AC-B051-638630AB3F73}
+		{17A13BD1-74C7-42B5-B7F1-D29E1E5708CE} = {A365BBE6-DBBD-432D-A235-B57285D9D4DE}
+		{D17BECEE-5F53-4BEB-96FC-C80EA8836627} = {A365BBE6-DBBD-432D-A235-B57285D9D4DE}
+		{26F9EA0A-F89E-4C5F-A4C6-F6D31E6E1FD6} = {3CC3B799-BA59-4704-8ED4-7CE2F823DF0F}
+		{A188D703-E478-4AFA-B304-749FF268AC12} = {3CC3B799-BA59-4704-8ED4-7CE2F823DF0F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2BE6627D-11A0-41E0-AE41-FDF5BE2200BC}
+	EndGlobalSection
+EndGlobal

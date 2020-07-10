@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usuarios-deployment
+spec:
+  selector:
+    matchLabels:
+      name: usuarios-pod
+  strategy:
+    type: RollingUpdate
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: usuarios-pod
+    spec:
+      containers:
+      - name: usuarios-deployment-container
+        image: cwregistrocontainers.azurecr.io/usuarios:#{Build.BuildId}#
+        env:
+          - name: IMAGEN
+            value: usuarios-#{Build.BuildId}#
+          - name: RAMA
+            value: #{Build.SourceBranch}#
+          - name: FECHADEPLOY
+            value: #{FechaCI}#
+          - name: AMBIENTE
+            value: #{AmbienteCI}#
+        ports:
+        - containerPort: 80
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/azure-dns-label-name: #{AmbienteCI}#-usuarios
+  name: usuarios-service
+spec:
+  ports:
+    # the port that this service should serve on
+    - port: 80
+      protocol: TCP
+  # label keys and values that must match in order to receive traffic for this service
+  selector:
+    name: usuarios-pod
+  type: LoadBalancer
+---

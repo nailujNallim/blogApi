@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ImportacionExportacion\**" />
+    <EmbeddedResource Remove="ImportacionExportacion\**" />
+    <None Remove="ImportacionExportacion\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\zmg.blogEngine.model\zmg.blogEngine.model.csproj" />
+    <ProjectReference Include="..\..\Core\zmg.blogEngine.services\zmg.blogEngine.services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+    <Folder Include="Validators\" />
+  </ItemGroup>
+
+</Project>
