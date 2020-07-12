@@ -28,9 +28,12 @@ namespace zmg.blogEngine.services
             return posts;
         }
 
-        public async Task<Guid> CreatePost(Post post)
+        public async Task<Guid> CreatePost(string title, string content, string username)
         {
-            post.Author = await UserRepository.GetWriterByUsername(post.Author.UserName);
+            var post = new Post();
+            post.Title = title;
+            post.Content = content;
+            post.Author = await UserRepository.GetWriterByUsername(username);
             post.SubmitDate = DateTime.Now;
             post.Status = StatusPost.Pending;
             
@@ -49,6 +52,16 @@ namespace zmg.blogEngine.services
             return posts;
         }
 
+        public async Task<ICollection<Post>> GestPostsPublished()
+        {
+            ICollection<Post> posts = await PostRepository.GetPostsPublished();
+
+            if (posts.Equals(null))
+                return new List<Post>();
+
+            return posts;
+        }
+
         public async Task<int> SetRevisionToPost(Guid pId, int status, string editorUsername)
         {
             Post post = await PostRepository.GetPostById(pId);
@@ -57,6 +70,25 @@ namespace zmg.blogEngine.services
             post.ApprovedBy = await UserRepository.GetEditorByUsername(editorUsername);
 
             return (int)post.Status;
+        }
+
+        public async Task<ICollection<Post>> Posts()
+        {
+            ICollection<Post> posts = await PostRepository.GetPosts();
+
+            if (posts.Equals(null))
+                return new List<Post>();
+
+            return posts;
+        }
+
+        public async Task<Post> Posts(Guid id)
+        {
+            return await PostRepository.GetPostById(id);
+
+            //if (post.Equals(null))
+            //    return new Post();
+            //return post;
         }
     }
 }

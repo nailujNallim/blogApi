@@ -11,5 +11,7 @@ namespace zmg.blogEngine.model
         Task<ICollection<Post>> GetPostsByUsername(string username);
         Task<ICollection<Post>> GetPostsPending();
         Task<Post> GetPostById(Guid pId);
+        Task<ICollection<Post>> GetPostsPublished();
+        Task<ICollection<Post>> GetPosts();
     }
 }

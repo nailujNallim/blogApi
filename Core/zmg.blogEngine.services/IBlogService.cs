@@ -7,10 +7,12 @@ namespace zmg.blogEngine.services
 {
     public interface IBlogService
     {
+        Task<ICollection<Post>> Posts();
         Task<ICollection<Post>> Posts(string username);
-
-        Task<Guid> CreatePost(Post post);
+        Task<Post> Posts(Guid id);
+        Task<Guid> CreatePost(string title, string content, string username);
         Task<ICollection<Post>> GestPostsPending();
         Task<int> SetRevisionToPost(Guid pId, int status, string username);
+        Task<ICollection<Post>> GestPostsPublished();
     }
 }

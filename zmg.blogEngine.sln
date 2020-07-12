@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zmg.blogEngine.test.api", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zmg.blogEngine.services.test", "Tests\zmg.blogEngine.services.test\zmg.blogEngine.services.test.csproj", "{A188D703-E478-4AFA-B304-749FF268AC12}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zmg.blogEngine.web", "Web\zmg.blogEngine.web\zmg.blogEngine.web.csproj", "{A605F4C5-E1BA-4C96-ADCC-46AD4287F8DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{A188D703-E478-4AFA-B304-749FF268AC12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A188D703-E478-4AFA-B304-749FF268AC12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A188D703-E478-4AFA-B304-749FF268AC12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A605F4C5-E1BA-4C96-ADCC-46AD4287F8DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A605F4C5-E1BA-4C96-ADCC-46AD4287F8DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A605F4C5-E1BA-4C96-ADCC-46AD4287F8DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A605F4C5-E1BA-4C96-ADCC-46AD4287F8DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +88,7 @@ Global
 		{D17BECEE-5F53-4BEB-96FC-C80EA8836627} = {A365BBE6-DBBD-432D-A235-B57285D9D4DE}
 		{26F9EA0A-F89E-4C5F-A4C6-F6D31E6E1FD6} = {3CC3B799-BA59-4704-8ED4-7CE2F823DF0F}
 		{A188D703-E478-4AFA-B304-749FF268AC12} = {3CC3B799-BA59-4704-8ED4-7CE2F823DF0F}
+		{A605F4C5-E1BA-4C96-ADCC-46AD4287F8DB} = {51C34D1B-E01B-4C29-A13E-BF028C630CA7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2BE6627D-11A0-41E0-AE41-FDF5BE2200BC}

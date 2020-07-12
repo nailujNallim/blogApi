@@ -62,6 +62,25 @@ namespace zmg.blogEngine.repository
             return postsPending.ToList();
         }
 
+        public async Task<ICollection<Post>> GetPostsPublished()
+        {
+            Repository.BeginTransaction();
+            var postsList = await Task.Run(()
+                => (from p in Repository.ToList<Post>() select p));
+            Repository.CommitTransaction();
+
+            var posts = new List<Post>();
+            foreach (var p in postsList)
+            {
+                if (p.Status.Equals(StatusPost.Approved))
+                {
+                    posts.Add(p);
+                }
+            }
+
+            return posts.ToList();
+        }
+
         public async Task<Post> GetPostById(Guid pId)
         {
             Repository.BeginTransaction();
@@ -70,6 +89,16 @@ namespace zmg.blogEngine.repository
             
             Repository.CommitTransaction();
             return post;
+        }
+
+        public async Task<ICollection<Post>> GetPosts()
+        {
+            Repository.BeginTransaction();
+            var postsList = await Task.Run(()
+                => (from p in Repository.ToList<Post>() select p));
+            Repository.CommitTransaction();
+
+            return postsList.ToList();
         }
     }
 }

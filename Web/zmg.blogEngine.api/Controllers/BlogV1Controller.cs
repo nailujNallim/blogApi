@@ -27,8 +27,8 @@ namespace zmg.blogEngine.api.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> CreateBlog(NewPostDto postDto)
         {
-            var post= _mapper.Map<Post>(postDto);
-            Guid postId = await BlogService.CreatePost(post);
+            //var post= _mapper.Map<Post>(postDto);
+            Guid postId = await BlogService.CreatePost(postDto.Title, postDto.Content, postDto.Username);
             return Ok(postId);
         }
 
@@ -43,6 +43,13 @@ namespace zmg.blogEngine.api.Controllers
         public async Task<IActionResult> GetAllPostsPending()
         {
             var postList = await BlogService.GestPostsPending();
+            return Ok(postList);
+        }
+
+        [HttpGet("published")]
+        public async Task<IActionResult> GetAllPostsPublished()
+        {
+            var postList = await BlogService.GestPostsPublished();
             return Ok(postList);
         }
 
