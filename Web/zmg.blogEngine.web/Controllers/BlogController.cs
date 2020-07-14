@@ -29,18 +29,21 @@ namespace zmg.blogEngine.web.Controllers
         public async Task<ActionResult> IndexAsync()
         {
             var username = _session.GetString("UserName");
+            ViewData["User"] = username;
 
             if (username == null)
             {
-                ViewBag.CanPost = CanPost(UserType.Unregistered);
-                ViewBag.CanApprove = CanApprove(UserType.Unregistered);
+                ViewBag.IsWriter = IsWriter(UserType.Unregistered);
+                ViewBag.IsEditor = IsEditor(UserType.Unregistered);
+                ViewBag.IsPublic = IsPublic(UserType.Unregistered);
                 return View(await BlogService.Posts());
             }
             else
             {
                 CurrentUser = await UserRepository.GetUser(username);
-                ViewBag.CanPost = CanPost(CurrentUser.UserType);
-                ViewBag.CanApprove = CanApprove(CurrentUser.UserType);
+                ViewBag.IsWriter = IsWriter(CurrentUser.UserType);
+                ViewBag.IsEditor = IsEditor(CurrentUser.UserType);
+                ViewBag.IsPublic = IsPublic(CurrentUser.UserType);
                 return View(await BlogService.Posts(CurrentUser.UserName));
             }
         }
@@ -52,13 +55,18 @@ namespace zmg.blogEngine.web.Controllers
             return RedirectToAction("Index");
         }
 
-        private bool CanApprove(UserType userType)
+        private bool IsEditor(UserType userType)
         {
             return (UserType.Editor.Equals(userType) ? true : false);
         }
-        private bool CanPost(UserType userType)
+        private bool IsWriter(UserType userType)
         {
             return (UserType.Writer.Equals(userType) ? true : false);
+        }
+
+        private bool IsPublic(UserType userType)
+        {
+            return (UserType.Unregistered.Equals(userType) ? true : false);
         }
 
         // GET: Blog/Create
@@ -94,6 +102,8 @@ namespace zmg.blogEngine.web.Controllers
         // GET: Blog/Edit/5
         public async Task<ActionResult> EditAsync(Guid id)
         {
+            var username = _session.GetString("UserName");
+
             var post = await BlogService.Posts(id);
             var editPost = new EditPostModel();
             
@@ -113,6 +123,8 @@ namespace zmg.blogEngine.web.Controllers
         {
             try
             {
+                var username = _session.GetString("UserName");
+
                 var postId = await BlogService.UpdatePost(post.Id, post.Title, post.Content, post.SubmitDate, post.Username);
 
                 return RedirectToAction("Index");
@@ -125,26 +137,30 @@ namespace zmg.blogEngine.web.Controllers
         }
 
         // GET: Blog/Delete/5
-        public ActionResult Approve(int id)
+        public async Task<ActionResult> ApproveAsync(Guid id, bool approved)
         {
-            return View();
+            var username = _session.GetString("UserName");
+            _ = await BlogService.SetRevisionToPost(id, approved, username);
+
+            return RedirectToAction("Index");
+            //return View();
         }
 
         // POST: Blog/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Approve(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Approve(int id, bool approve)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add delete logic here
 
-                return RedirectToAction(nameof(IndexAsync));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //        return RedirectToAction(nameof(IndexAsync));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
     }
 }

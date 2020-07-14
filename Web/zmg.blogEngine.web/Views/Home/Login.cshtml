@@ -1,7 +1,8 @@
 ﻿@model zmg.blogEngine.web.Model.UserLoginModel
 
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "MVC Blog Engine";
+    ViewData["User"] = "Public";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
@@ -23,7 +24,7 @@
                 <input type="submit" value="Login" class="btn btn-primary" />
             </div>
         }
-        <p>Or enter like a visitor @Html.ActionLink("Guest", "Visitor","Blog")</p>
+        <p>Or enter like a visitor @Html.ActionLink("Guest", "Visitor", "Blog")</p>
     </div>
 </div>
 

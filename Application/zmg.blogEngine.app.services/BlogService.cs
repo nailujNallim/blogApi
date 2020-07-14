@@ -63,10 +63,10 @@ namespace zmg.blogEngine.app.services
             return posts;
         }
 
-        public async Task<int> SetRevisionToPost(Guid pId, int status, string editorUsername)
+        public async Task<int> SetRevisionToPost(Guid pId, bool approved, string editorUsername)
         {
             Post post = await PostRepository.GetPostById(pId);
-            post.Status = (StatusPost)status;
+            post.Status = approved ?  StatusPost.Approved : StatusPost.Rejected;
             post.RevisionDate = DateTime.Now;
             post.ApprovedBy = await UserRepository.GetUser(editorUsername, UserType.Writer);
 

@@ -57,7 +57,7 @@ namespace zmg.blogEngine.api.Controllers
         public async Task<IActionResult> SetRevisionToPost(string postId, [FromBody]UpdatePostDto postDto)
         {
             var pId = Guid.Parse(postId);
-            var newStatus = await BlogService.SetRevisionToPost(pId, postDto.newStatus, postDto.Username);
+            var newStatus = await BlogService.SetRevisionToPost(pId, postDto.Approved, postDto.Username);
             return Ok(newStatus);
         }
     }

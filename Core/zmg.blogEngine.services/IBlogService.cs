@@ -12,7 +12,7 @@ namespace zmg.blogEngine.services
         Task<Post> Posts(Guid id);
         Task<Guid> CreatePost(string title, string content, string username);
         Task<ICollection<Post>> GestPostsPending();
-        Task<int> SetRevisionToPost(Guid pId, int status, string username);
+        Task<int> SetRevisionToPost(Guid pId, bool approved, string username);
         Task<ICollection<Post>> GestPostsPublished();
         Task<bool> UpdatePost(Guid id, string title, string content, DateTime submitDate, string username);
     }

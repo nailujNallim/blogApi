@@ -2,12 +2,11 @@
 
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Index";
-
+    ViewData["Title"] = "MVC Blog Engine";
 
     <h1>Post List</h1>
 
-    if (ViewBag.CanPost)
+    if (ViewBag.IsWriter)
     {
         <p>@Html.ActionLink("Create New Post", "Create")</p>
     }
@@ -25,35 +24,55 @@
             <th>
                 @Html.DisplayNameFor(model => model.Author.UserName)
             </th>
+            @{ if (ViewBag.IsPublic)
+                {
+                    <th>
+                        @Html.DisplayNameFor(model => model.ApprovedBy.UserName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RevisionDate)
+                    </th>
+                }
+            }
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Content)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Author.UserName)
-                </td>
-                <td>
-                    @{ if (ViewBag.CanPost)
-                        {
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                        }
-                        if (ViewBag.CanApprove)
-                        {
-                            @Html.ActionLink("Approve", "Approve", new { id = item.Id, approved = true })
-                            @Html.ActionLink("Reject", "Approve", new { id = item.Id, approved = false })
-                        }
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.UserName)
+            </td>
+            @{ if (ViewBag.IsPublic)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApprovedBy.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RevisionDate)
+                    </td>
+                }
+            }
+            <td>
+                @{ if (ViewBag.IsWriter)
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
                     }
-                </td>
-            </tr>
+                    if (ViewBag.IsEditor)
+                    {
+                        @Html.ActionLink("Approve ", "Approve", new { id = item.Id, approved = true })
+                        @Html.ActionLink("Reject", "Approve", new { id = item.Id, approved = false })
+                    }
+                }
+            </td>
+        </tr>
         }
     </tbody>
 </table>

@@ -12,6 +12,7 @@ using zmg.blogEngine.model;
 using zmg.blogEngine.repository;
 using zmg.blogEngine.api;
 using zmg.blogEngine.api.LoggerAdapter;
+using zmg.blogEngine.app.services;
 
 namespace zmg.blogEngine.api
 {
@@ -87,12 +88,9 @@ namespace zmg.blogEngine.api
         {
             _logger.LogInformation("Setting Dependency Objects");
             services.AddTransient<IRepository, RepositoryBase>();
-            
             services.AddTransient<IPostRepository, PostRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IBlogService, BlogService>();
-            //services.AddTransient<IUsuariosService, UsuariosService>();
-            //services.AddTransient<IUsuariosRepository, UsuariosRepository>();
 
             //Logger objects
             services.AddTransient(typeof(ILoggerAdapter<>), typeof(LoggerAdapter<>));

@@ -5,7 +5,7 @@ namespace zmg.blogEngine.api.Models
 {
     public class UpdatePostDto
     {
-        public int newStatus { get; set; }
+        public bool Approved { get; set; }
         public string Username { get; set; }
     }
 }
