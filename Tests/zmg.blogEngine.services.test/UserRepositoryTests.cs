@@ -7,6 +7,7 @@ using zmg.blogEngine.repository;
 using Tynamix.ObjectFiller;
 using System.Collections.Generic;
 using System.Linq;
+using zmg.blogEngine.model.Enumerations;
 
 namespace zmg.blogEngine.services.test
 {
@@ -37,23 +38,23 @@ namespace zmg.blogEngine.services.test
             //Arrange            
             var username = "writerUsername";
 
-            RepositoryBaseMock.Setup(x => x.ToList<Writer>())
+            RepositoryBaseMock.Setup(x => x.ToList<User>())
                 .Returns(UsersListMock().AsQueryable());
 
             //Execute            
-            Writer result = await UsersRepository.GetWriterByUsername(username);
+            var result = await UsersRepository.GetUser(username, UserType.Writer);
 
             //Assert
             Assert.AreEqual(username, result);
         }
 
-        private List<Writer> UsersListMock()
+        private List<User> UsersListMock()
         {
-            var userlist = new List<Writer>();
+            var userlist = new List<User>();
 
             for (int i = 0; i < 5; i++)
             {
-                Filler<Writer> filler = new Filler<Writer>();
+                Filler<User> filler = new Filler<User>();
                 filler.Setup();
                 userlist.Add(filler.Create());
             }

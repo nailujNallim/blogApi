@@ -100,5 +100,21 @@ namespace zmg.blogEngine.repository
 
             return postsList.ToList();
         }
+
+        public async Task<bool> SaveOrUpdate(Post post)
+        {
+            try
+            {
+                Repository.BeginTransaction();
+                var res = await Repository.SaveOrUpdateAsync(post);
+                Repository.CommitTransaction();
+                return res;
+            }
+            catch (Exception e)
+            {
+                //Repository.RollbackTransaction();
+                throw new Exception("Update Post Error: " + e.Message);
+            }
+        }
     }
 }

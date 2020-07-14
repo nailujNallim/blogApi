@@ -11,6 +11,8 @@ namespace zmg.blogEngine.repository.mappings
             //HasMany(x => x.Rols).Element("EnumValueColumn");
             Map(x => x.FullName).Not.Nullable();
             Map(x => x.UserName).Not.Nullable();
+            Map(x => x.UserType).Not.Nullable();
+
         }
     }
 }

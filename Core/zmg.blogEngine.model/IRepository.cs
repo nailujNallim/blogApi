@@ -10,7 +10,7 @@ namespace zmg.blogEngine.model
     {
         Task<Guid> Save(object obj);
 
-        void SaveOrUpdateAsync(object obj);
+        Task<bool> SaveOrUpdateAsync(object obj);
 
         void DeleteAsync(object obj);
 

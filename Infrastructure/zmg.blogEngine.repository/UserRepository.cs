@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using zmg.blogEngine.model;
 using zmg.blogEngine.model.Domain;
+using zmg.blogEngine.model.Enumerations;
 
 namespace zmg.blogEngine.repository
 {
@@ -14,18 +15,19 @@ namespace zmg.blogEngine.repository
             Repository = repository;
         }
 
-        public async Task<Writer> GetWriterByUsername(string username)
+        public async Task<User> GetUser(string username, UserType userType)
         {
             Repository.BeginTransaction();
-            var w =  await Task.Run(() => (from w in Repository.ToList<Writer>()
+            var w =  await Task.Run(() => (from w in Repository.ToList<User>()
                                          where w.UserName.Equals(username)
-                                        select w).FirstOrDefault());
+                                           select w).FirstOrDefault());
             if (w == null)
             {
-                w = new Writer()
+                w = new User()
                 {
-                    FullName = "new writer",
-                    UserName = username
+                    FullName = string.Format("{0} {1}", username, userType),
+                    UserName = username,
+                    UserType = userType
                 };
                 w.Id = await Repository.Save(w);
             }
@@ -33,21 +35,13 @@ namespace zmg.blogEngine.repository
             return w;
         }
 
-        public async Task<Editor> GetEditorByUsername(string username)
+        public async Task<User> GetUser(string username)
         {
             Repository.BeginTransaction();
-            var w = await Task.Run(() => (from e in Repository.ToList<Editor>()
-                                          where e.UserName.Equals(username)
-                                          select e).FirstOrDefault());
-            if (w == null)
-            {
-                w = new Editor()
-                {
-                    FullName = "new editor",
-                    UserName = username
-                };
-                w.Id = await Repository.Save(w);
-            }
+            var w = await Task.Run(() => (from w in Repository.ToList<User>()
+                                          where w.UserName.Equals(username)
+                                          select w).FirstOrDefault());
+
             Repository.CommitTransaction();
             return w;
         }

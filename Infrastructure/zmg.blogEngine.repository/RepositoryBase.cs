@@ -73,9 +73,10 @@ namespace zmg.blogEngine.repository
             return (Guid)await _session.SaveAsync(obj);
         }
 
-        public virtual async void SaveOrUpdateAsync(object obj)
+        public virtual async Task<bool> SaveOrUpdateAsync(object obj)
         {
             await _session.SaveOrUpdateAsync(obj);
+            return true;
         }
 
         public virtual async void DeleteAsync(object obj)

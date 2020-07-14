@@ -11,8 +11,8 @@ namespace zmg.blogEngine.model.Domain
         public virtual string Title { get; set; }
         public virtual string Content { get; set; }
 
-        public virtual Writer Author { get; set; }
-        public virtual Editor ApprovedBy { get; set; }
+        public virtual User Author { get; set; }
+        public virtual User ApprovedBy { get; set; }
         public virtual DateTime SubmitDate { get; set; }
         public virtual DateTime RevisionDate { get; set; }
         public virtual StatusPost Status{ get; set; }

@@ -14,5 +14,6 @@ namespace zmg.blogEngine.services
         Task<ICollection<Post>> GestPostsPending();
         Task<int> SetRevisionToPost(Guid pId, int status, string username);
         Task<ICollection<Post>> GestPostsPublished();
+        Task<bool> UpdatePost(Guid id, string title, string content, DateTime submitDate, string username);
     }
 }

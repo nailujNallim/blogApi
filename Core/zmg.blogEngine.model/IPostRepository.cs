@@ -13,5 +13,6 @@ namespace zmg.blogEngine.model
         Task<Post> GetPostById(Guid pId);
         Task<ICollection<Post>> GetPostsPublished();
         Task<ICollection<Post>> GetPosts();
+        Task<bool> SaveOrUpdate(Post post);
     }
 }

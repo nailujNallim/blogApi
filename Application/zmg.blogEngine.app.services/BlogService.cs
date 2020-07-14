@@ -4,8 +4,9 @@ using System.Threading.Tasks;
 using zmg.blogEngine.model;
 using zmg.blogEngine.model.Domain;
 using zmg.blogEngine.model.Enumerations;
+using zmg.blogEngine.services;
 
-namespace zmg.blogEngine.services
+namespace zmg.blogEngine.app.services
 {
     public class BlogService : IBlogService
     {
@@ -20,12 +21,12 @@ namespace zmg.blogEngine.services
 
         public async Task<ICollection<Post>> Posts(string username)
         {
-            ICollection<Post> posts = await PostRepository.GetPostsByUsername(username);
+            var user = await UserRepository.GetUser(username);
 
-            if(posts.Equals(null))
-                return new List<Post>();
-
-            return posts;
+            if(UserType.Writer.Equals(user.UserType))
+                return  await PostRepository.GetPostsByUsername(username);
+            else
+                return await PostRepository.GetPostsPending();
         }
 
         public async Task<Guid> CreatePost(string title, string content, string username)
@@ -33,10 +34,10 @@ namespace zmg.blogEngine.services
             var post = new Post();
             post.Title = title;
             post.Content = content;
-            post.Author = await UserRepository.GetWriterByUsername(username);
+            post.Author = await UserRepository.GetUser(username, UserType.Writer);
             post.SubmitDate = DateTime.Now;
             post.Status = StatusPost.Pending;
-            
+
             Guid postId = await PostRepository.CreatePost(post);
 
             return postId;
@@ -67,14 +68,14 @@ namespace zmg.blogEngine.services
             Post post = await PostRepository.GetPostById(pId);
             post.Status = (StatusPost)status;
             post.RevisionDate = DateTime.Now;
-            post.ApprovedBy = await UserRepository.GetEditorByUsername(editorUsername);
+            post.ApprovedBy = await UserRepository.GetUser(editorUsername, UserType.Writer);
 
             return (int)post.Status;
         }
 
         public async Task<ICollection<Post>> Posts()
         {
-            ICollection<Post> posts = await PostRepository.GetPosts();
+            ICollection<Post> posts = await PostRepository.GetPostsPublished();
 
             if (posts.Equals(null))
                 return new List<Post>();
@@ -85,10 +86,19 @@ namespace zmg.blogEngine.services
         public async Task<Post> Posts(Guid id)
         {
             return await PostRepository.GetPostById(id);
+        }
 
-            //if (post.Equals(null))
-            //    return new Post();
-            //return post;
+        public async Task<bool> UpdatePost(Guid id, string title, string content, DateTime submitDate, string username)
+        {
+            var post = new Post();
+            post.Id = id;
+            post.Title = title;
+            post.Content = content;
+            post.Author = await UserRepository.GetUser(username);
+            post.SubmitDate = submitDate;
+            post.Status = StatusPost.Pending;
+
+            return await PostRepository.SaveOrUpdate(post);
         }
     }
 }

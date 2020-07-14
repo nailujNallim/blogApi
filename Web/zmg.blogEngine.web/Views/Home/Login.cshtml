@@ -1,0 +1,33 @@
+﻿@model zmg.blogEngine.web.Model.UserLoginModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Login</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <label asp-for="info" class="control-label">You can use: "writer" or "editor" usernames</label>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label">Username</label>
+                @Html.EditorFor(model => model.Username)<br />
+                @Html.ValidationMessageFor(model => model.Username)
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        }
+        <p>Or enter like a visitor @Html.ActionLink("Guest", "Visitor","Blog")</p>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
